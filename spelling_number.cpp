@@ -1,10 +1,28 @@
+/*
+    integer to english word Progrma
+    As a submission to https://code.golf/spelling-numbers#cpp
+
+    Created by: amd
+*/
+
+// ---------------------------------
+// Preprocessor Declaration
 #include <iostream>
 #include <string>
 
+// ---------------------------------
+// Function spell_ones declaration
+// use to spell for one's
 void spell_ones(int numtospell_ones)
 {
+    // ***********************
+    // Variable Declaration
     using namespace std;
 
+    // ***********************
+    // Actual Function
+
+    // spell and display of different digit
     if(numtospell_ones==1)
     {
         cout<<"one ";
@@ -44,10 +62,19 @@ void spell_ones(int numtospell_ones)
     
 };
 
+// ---------------------------------
+// Function spell_tens declaration
+// use to spell for 20 to 90
 void spell_tens(int numtospell_tens)
 {
+    // ***********************
+    // Variable Declaration
     using namespace std;
 
+    // ***********************
+    // Actual Function
+
+    // spell & display different group digit
     if(numtospell_tens==2)
     {
         cout<<"twenty";
@@ -83,10 +110,21 @@ void spell_tens(int numtospell_tens)
     
 };
 
+// ---------------------------------
+// Function spell_teen declaration
+// use to spell for 10 to 19
+
 void spell_teen(int numtospell_tens)
 {
+    // ***********************
+    // Variable Declaration
     using namespace std;
 
+
+    // ***********************
+    // Actual Function
+
+    // spell & display different group digit
 
     if(numtospell_tens==11)
     {
@@ -118,7 +156,7 @@ void spell_teen(int numtospell_tens)
     };
     if(numtospell_tens==18)
     {
-        cout<<"eigtheen ";
+        cout<<"eighteen ";
     };
     if(numtospell_tens==19)
     {
@@ -128,28 +166,32 @@ void spell_teen(int numtospell_tens)
     {
         cout<<"ten ";
     };
-
 };
 
-
+// ---------------------------------
+// Function spell declaration
+// use to call other spell to perfom 
 void spell(int numtospell)
 {
 
+    // ***********************
+    // Variable Declaration
     using namespace std;
 
     int num;
-    int t;
-    int h;
-    int e;
     int y;
 
+    // ***********************
+    // Actual Function
     num=numtospell;
 
+    // for zero value
     if(num==0)
     {
         cout<<"zero";
     };
 
+    // for 1000s
     y=num/1000;
     if(y>=1)
     {
@@ -159,6 +201,7 @@ void spell(int numtospell)
         num=num-(y*1000);
     };
 
+    // for 100s
     y=num/100;
     if(y>=1)
     {
@@ -169,13 +212,16 @@ void spell(int numtospell)
 
     };
 
+    // for 1 to 100
     if(num>0 && numtospell>100)
     {
         cout<<"and ";
     };
 
+    // for tens 10 to 99
     if(num>=20)
     {
+        // for 20 to 99
         y=num/10;
         spell_tens(y);
         num=num-(y*10);
@@ -189,6 +235,7 @@ void spell(int numtospell)
 
     }else
     {
+        // for 10 to 19
         y=num;
         if(y>=10 && y<=19)
         {
@@ -199,16 +246,17 @@ void spell(int numtospell)
         };
 
         num=num-y;
-
     };
-
     cout<<endl;
 
 };
 
-
+// ---------------------------------
+// Progran  Entry Point
 int main(int argc, char *argv[])
 {
+    // ***********************
+    // Variable Declaration
     using namespace std;
 
     int i;
@@ -216,12 +264,21 @@ int main(int argc, char *argv[])
 
     string str01;
 
+    // ***********************
+    // Actual Procedure
+
+    // Test for arg
     if( argc > 1 )
     {
+        // for with arg
+
         i=1;
 
+        // loop to process args
         while(i<argc)
         {
+            // call to convert args
+            // into number words
             str01=argv[i];
             j=stoi(str01);
             spell(j);
@@ -231,6 +288,7 @@ int main(int argc, char *argv[])
 
     }else
     {
+        // Situation for no ARG
         cout<<"ERROR: No ARG input."<<endl;
     };
 
