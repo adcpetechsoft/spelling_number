@@ -10,164 +10,48 @@
 #include <iostream>
 #include <string>
 
-// ---------------------------------
-// Function spell_ones declaration
-// use to spell for one's
-void spell_ones(int numtospell_ones)
+// ********************************
+// Global Variables
+
+// variable words for 2 to 20
+std::string num_spell_ones[20]
 {
-    // ***********************
-    // Variable Declaration
-    using namespace std;
-
-    // ***********************
-    // Actual Function
-
-    // spell and display of different digit
-    if(numtospell_ones==1)
-    {
-        cout<<"one ";
-    };
-    if(numtospell_ones==2)
-    {
-        cout<<"two ";
-    };
-    if(numtospell_ones==3)
-    {
-        cout<<"three ";
-    };
-    if(numtospell_ones==4)
-    {
-        cout<<"four ";
-    };
-    if(numtospell_ones==5)
-    {
-        cout<<"five ";
-    };
-    if(numtospell_ones==6)
-    {
-        cout<<"six ";
-    };
-    if(numtospell_ones==7)
-    {
-        cout<<"seven ";
-    };
-    if(numtospell_ones==8)
-    {
-        cout<<"eight ";
-    };
-    if(numtospell_ones==9)
-    {
-        cout<<"nine ";
-    };
-    
+    " ",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "twelve",
+    "thirteen",
+    "fourteen",
+    "fifteen",
+    "sixteen",
+    "seventeen",
+    "eighteen",
+    "nineteen",
 };
 
-// ---------------------------------
-// Function spell_tens declaration
-// use to spell for 20 to 90
-void spell_tens(int numtospell_tens)
+// variable words for 10 - 90
+std::string num_spell_tens[10]
 {
-    // ***********************
-    // Variable Declaration
-    using namespace std;
-
-    // ***********************
-    // Actual Function
-
-    // spell & display different group digit
-    if(numtospell_tens==2)
-    {
-        cout<<"twenty";
-    };
-    if(numtospell_tens==3)
-    {
-        cout<<"thirty";
-    };
-    if(numtospell_tens==4)
-    {
-        cout<<"forty";
-    };
-    if(numtospell_tens==5)
-    {
-        cout<<"fifty";
-    };
-    if(numtospell_tens==6)
-    {
-        cout<<"sixty";
-    };
-    if(numtospell_tens==7)
-    {
-        cout<<"seventy";
-    };
-    if(numtospell_tens==8)
-    {
-        cout<<"eighty";
-    };
-    if(numtospell_tens==9)
-    {
-        cout<<"ninety";
-    };
-    
+    " ",
+    "ten",
+    "twenty",
+    "thirty",
+    "fourty",
+    "fifty",
+    "sixty",
+    "seventy",
+    "eighty",
+    "ninety",
 };
-
-// ---------------------------------
-// Function spell_teen declaration
-// use to spell for 10 to 19
-
-void spell_teen(int numtospell_tens)
-{
-    // ***********************
-    // Variable Declaration
-    using namespace std;
-
-
-    // ***********************
-    // Actual Function
-
-    // spell & display different group digit
-
-    if(numtospell_tens==11)
-    {
-        cout<<"eleven ";
-    };
-    if(numtospell_tens==12)
-    {
-        cout<<"twelve ";
-    };
-    if(numtospell_tens==13)
-    {
-        cout<<"thirteen ";
-    };
-    if(numtospell_tens==14)
-    {
-        cout<<"fourteen ";
-    };
-    if(numtospell_tens==15)
-    {
-        cout<<"fifteen ";
-    };
-    if(numtospell_tens==16)
-    {
-        cout<<"sixteen ";
-    };
-    if(numtospell_tens==17)
-    {
-        cout<<"seventeen ";
-    };
-    if(numtospell_tens==18)
-    {
-        cout<<"eighteen ";
-    };
-    if(numtospell_tens==19)
-    {
-        cout<<"nineteen ";
-    };
-    if(numtospell_tens==10)
-    {
-        cout<<"ten ";
-    };
-};
-
 // ---------------------------------
 // Function spell declaration
 // use to call other spell to perfom 
@@ -181,23 +65,26 @@ void spell(int numtospell)
     int num;
     int y;
 
+    string std01;
+
     // ***********************
     // Actual Function
     num=numtospell;
 
+    std01[0]='\0';
+
     // for zero value
     if(num==0)
     {
-        cout<<"zero";
+        std01="zero";
     };
 
     // for 1000s
     y=num/1000;
     if(y>=1)
     {
-        spell_ones(y);
-        cout<<"thousand ";
-
+        std01+=num_spell_ones[y];
+        std01+=" thousand ";
         num=num-(y*1000);
     };
 
@@ -205,17 +92,15 @@ void spell(int numtospell)
     y=num/100;
     if(y>=1)
     {
-        spell_ones(y);
-        cout<<"hundred ";
-
+        std01+=num_spell_ones[y];
+        std01+=" hundred ";
         num=num-(y*100);
-
     };
 
     // for 1 to 100
     if(num>0 && numtospell>100)
     {
-        cout<<"and ";
+        std01+="and ";
     };
 
     // for tens 10 to 99
@@ -223,14 +108,14 @@ void spell(int numtospell)
     {
         // for 20 to 99
         y=num/10;
-        spell_tens(y);
+        std01+=num_spell_tens[y];
         num=num-(y*10);
 
         y=num;
         if(y>0)
         {
-            cout<<"-";
-            spell_ones(y);
+            std01+="-";
+            std01+=num_spell_ones[y];
         };
 
     }else
@@ -239,14 +124,15 @@ void spell(int numtospell)
         y=num;
         if(y>=10 && y<=19)
         {
-            spell_teen(y);
+            std01+=num_spell_ones[y];
         }else
         {
-            spell_ones(y);
+            std01+=num_spell_ones[y];
         };
 
         num=num-y;
     };
+    cout<<std01;
     cout<<endl;
 
 };
